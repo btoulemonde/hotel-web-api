@@ -8,6 +8,7 @@ import java.util.UUID;
 public class ReservationJson extends BaseEntite {
 
 	private LocalDate dateDebut;
+
 	private LocalDate dateFin;
 	private UUID clientId;
 	private List<UUID> chambres = new ArrayList<>();
