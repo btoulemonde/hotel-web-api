@@ -1,5 +1,5 @@
 function recupererClients() {
-	fetch('clients/lister')
+	fetch('clients')
 			.then(function(resp) {
 				return resp.json();
 			})
