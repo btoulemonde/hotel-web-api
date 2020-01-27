@@ -9,7 +9,7 @@ function recupererClients() {
 								function(client) {
 									return '<option>' + client.nom + " "
 											+ client.prenoms + '</option>';
-								}).join();
+								}).join('');
 						document.getElementById('client').innerHTML = ' <label for="client">client</label><select class="form-control" name="client" id="client">'
 								+ clients + '</select>';
 					})
@@ -22,7 +22,8 @@ function recupererChambres() {
 			})
 			.then(
 					function(listeChambres) {
-						var chambres = listeChambres.map(
+						var chambres = listeChambres
+								.map(
 										function(chambre) {
 											return '<div class="row"><input class="form-check-input" type="checkbox" id="'
 													+ chambre.uuid
@@ -32,25 +33,43 @@ function recupererChambres() {
 													+ chambre.numero
 													+ " ("
 													+ chambre.surfaceEnM2
-													+ " m²) - Hotel "+chambre.hotel.nom+ " ("+ chambre.hotel.nombreEtoiles+ " etoile(s)"
+													+ " m²) - Hotel "
+													+ chambre.hotel.nom
+													+ " ("
+													+ chambre.hotel.nombreEtoiles
+													+ " etoile(s)"
 													+ '</label></div>';
 
-										}).join();
-						document.getElementById('cham').innerHTML = '<div class="form-group form-check">' + chambres + '</div>';
+										}).join('');
+						document.getElementById('cham').innerHTML = '<div class="form-group form-check">'
+								+ chambres + '</div>';
 					})
 }
 
-function ajoutBDD(){
-	var resa ={
-			
-	}
-}
-	
-	
-    fetch('reservations',{
-        method: 'POST',
-        body: ''
-    })
 
+function ajoutBDD() {
+    var dateDebut = document.getElementById("dateDebut");
+    var dateFin = document.getElementById("dateFin");
+    var ClientId = document.getElementsByName("client");
+    var chambres = document.getElementsByName("cham"); 
+	var listeChambres=[];
+	
+	for (i=0 ; i<= chambres.length-1 ; i++)
+	{
+		
+		
+			listeChambres.push(formCheckbox[i].id);
+		
+	}
+	
+	fetch('reservations',
+			{
+      
+        		method: 'POST',
+		headers: {
+		"Content-Type": "application/json"
+		},
+		body: '{"dateDebut": "dateDebut", "dateFin": "dateFin", "ClientId": "ClientId", "chambres": "listeChambres" }'
+		}).then(response => response.json());
 }
   
