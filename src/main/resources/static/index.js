@@ -58,7 +58,7 @@ function ajoutBDD() {
 	{
 		
 		
-			listeChambres.push(formCheckbox[i].id);
+			listeChambres.push(chambres[i].id);
 		
 	}
 	
