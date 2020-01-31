@@ -15,6 +15,14 @@ public class ChambreController {
 
 	private ChambreService chambreService;
 
+	/**
+	 * @param chambreService
+	 */
+	public ChambreController(ChambreService chambreService) {
+		super();
+		this.chambreService = chambreService;
+	}
+
 	@GetMapping
 	public List<Chambre> listerChambres() {
 		return this.chambreService.listerChambres();
